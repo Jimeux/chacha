@@ -12,22 +12,22 @@
 
 ### Benchmarks
 
-The benchmarks compare serializing a struct with JSON and Protobuf before encrypting, and do the reverse for decryption. 
+The benchmarks compare encrypting struct values serialized with JSON and Protobuf. 
 
 #### User struct with short values
 
-Operation | Time
----|---
-Proto marshal + encrypt | 2.3-2.6ms
-JSON marshal + encrypt | 3-3.4ms
-Proto unmarshal + decrypt | 1-1.3ms
-JSON unmarshal + decrypt | 4.3-4.7ms 💩
+Function | Executions | Time
+---|---|---
+BenchmarkRegularJSONEncrypt-8 |	1000000	| 2070 ns/op
+BenchmarkRegularJSONDecrypt-8       |	  300000	 |   3370 ns/op
+BenchmarkRegularProtobufEncrypt-8   |	 1000000	 |   1418 ns/op
+BenchmarkRegularProtobufDecrypt-8   |	 2000000	  |   722 ns/op
 
 #### User struct with long values
 
-Operation | Time
----|---
-Proto marshal + encrypt | 4.6-5.4ms
-JSON marshal + encrypt | 6.4-7.1ms
-Proto unmarshal + decrypt | 3.3-3.6ms
-JSON unmarshal + decrypt | 14-15ms 💩💩💩💩💩
+Function | Executions | Time
+---|---|---
+BenchmarkBigJSONEncrypt-8           |	  300000	 |   4345 ns/op
+BenchmarkBigJSONDecrypt-8         |  	  200000 |   10114 ns/op
+BenchmarkBigProtobufEncrypt-8       |	  500000	 |   3094 ns/op
+BenchmarkBigProtobufDecrypt-8       |	  500000	 |   2350 ns/op
